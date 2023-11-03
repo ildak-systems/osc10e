@@ -29,7 +29,10 @@ Task* pickNextTask() {
 
   while (temp != NULL) {
     if (comesBefore(temp->task->name, best_sofar->name))
-      best_sofar = temp->task;
+    {
+        best_sofar = temp->task;
+    }
+      
     temp = temp->next;
   }
   // delete the node from list, Task will get deleted later
@@ -51,6 +54,8 @@ void add(char *name, int priority, int burst)
 // invoke the scheduler
 void schedule()
 {
+    // simply run pickNextTask() using lexicographical order since
+    // all tasks arrive at the same time in FCFS algorithm
     Task* nextRun = pickNextTask();
     while (nextRun != NULL)
     {   
